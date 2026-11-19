@@ -9,7 +9,7 @@ const BlogsList = async ({
 }) => {
   const { filter } = await searchParams
 
-  const blogs = getBlogs()
+  const blogs = await getBlogs()
 
   const filteredBlogs = filter
     ? blogs.filter(blog =>
@@ -18,8 +18,9 @@ const BlogsList = async ({
     : blogs
 
   const sortedBlogs = [...filteredBlogs].sort(
-    (a, b) => b.likes - a.likes
-  )
+  (a, b) => (b.likes ?? 0) - (a.likes ?? 0)
+)
+  
 
   return (
     <ul>

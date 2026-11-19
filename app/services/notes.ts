@@ -1,45 +1,30 @@
-const blogs = [
-  {
-    id: 1,
-    author: "Dan Abramov",
-    title: "Understanding React Server Components",
-    url: "https://react.dev",
-    likes: 15
-  
-  },
-  {
-    id: 2,
-    author: "Lee Robinson",
-    title: "Getting Started with Next.js",
-    url: "https://nextjs.org",
-    likes: 20
-    
-  },
-  {
-    id: 3,
-    author: "Vercel",
-    title: "Static and Dynamic Rendering in Next.js",
-    url: "https://nextjs.org/docs",
-    likes: 10
-   
-  },
-];
-export const getBlogById = (id: number) => {
-  return blogs.find((blog) => blog.id === id)
+import { eq, sql } from "drizzle-orm"
+import { db } from "../db"
+import { blogs } from "../db/schema"
+
+export const getBlogById = (id: number) =>
+  db.query.blogs.findFirst({
+    where: eq(blogs.id, id),
+  })
+
+export const getBlogs = () => db.select().from(blogs)
+
+export const addBlog = async (
+  title: string,
+  author: string,
+  url: string,
+  likes: number,
+) => {
+  const [blog] = await db
+    .insert(blogs)
+    .values({ title, author, url, likes })
+    .returning()
+
+  return blog
 }
 
-let nextId = 4
-
-export const getBlogs = () => {
-  return blogs
-}
-
-export const addBlog = (title: string, author: string, url: string, likes: number, important: boolean) => {
-  blogs.push({ id: nextId++, title, author, url, likes })
-}
-export const addlike  = (id:number) => {
-  const note = blogs.find((blog) => blog.id === id)
-  if (note) {
-    note.likes+=1
-  }
-}
+export const addlike = (id: number) =>
+  db
+    .update(blogs)
+    .set({ likes: sql<number>`coalesce(${blogs.likes}, 0) + 1` })
+    .where(eq(blogs.id, id))
