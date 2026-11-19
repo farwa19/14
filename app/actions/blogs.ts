@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { addBlog, addlike } from "../services/notes"
+
 export const likeBlog = async (formData: FormData) => {
   const id = Number(formData.get("id"))
   if (!Number.isInteger(id) || id < 1) {
@@ -13,10 +14,11 @@ export const likeBlog = async (formData: FormData) => {
   revalidatePath(`/blogs/${id}`)
   revalidatePath("/blogs")
 }
+
 export const createBlog = async (formData: FormData) => {
-  const title = formData.get("title") as string
-  const author = formData.get("author") as string
-  const url = formData.get("url") as string
+  const title = String(formData.get("title") ?? "")
+  const author = String(formData.get("author") ?? "")
+  const url = String(formData.get("url") ?? "")
   const likes = Number(formData.get("likes"))
 
   if (!title.trim() || !author.trim() || !url.trim()) {
@@ -28,6 +30,5 @@ export const createBlog = async (formData: FormData) => {
 
   await addBlog(title, author, url, likes)
   revalidatePath("/blogs")
-
   redirect("/blogs")
 }

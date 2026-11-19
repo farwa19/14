@@ -8,23 +8,21 @@ const BlogsList = async ({
   searchParams: Promise<{ filter?: string }>
 }) => {
   const { filter } = await searchParams
-
   const blogs = await getBlogs()
 
   const filteredBlogs = filter
-    ? blogs.filter(blog =>
-        blog.title.toLowerCase().includes(filter.toLowerCase())
+    ? blogs.filter((blog) =>
+        blog.title.toLowerCase().includes(filter.toLowerCase()),
       )
     : blogs
 
   const sortedBlogs = [...filteredBlogs].sort(
-  (a, b) => (b.likes ?? 0) - (a.likes ?? 0)
-)
-  
+    (a, b) => (b.likes ?? 0) - (a.likes ?? 0),
+  )
 
   return (
     <ul>
-      {sortedBlogs.map(blog => (
+      {sortedBlogs.map((blog) => (
         <li key={blog.id}>
           <Link href={`/blogs/${blog.id}`}>
             {blog.title} by {blog.author} — Likes: {blog.likes}
