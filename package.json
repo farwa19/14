@@ -9,11 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@neondatabase/serverless": "^1.2.1",
     "drizzle-orm": "^0.45.4",
-=======
->>>>>>> 9f3ebd9f7590f7d0aa3e1074254435c666297c2f
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0"
@@ -23,10 +20,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-<<<<<<< HEAD
     "drizzle-kit": "^0.31.11",
-=======
->>>>>>> 9f3ebd9f7590f7d0aa3e1074254435c666297c2f
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "tailwindcss": "4.3.3",
