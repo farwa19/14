@@ -1,14 +1,12 @@
 
 import { redirect } from "next/navigation"
 import { connection } from "next/server"
-import { Suspense } from "react"
 import { getCurrentUser } from "../../services/session"
 import NewBlogForm from "./NewBlogForm"
 
 export const instant = false
 
 async function NewBlogContent() {
-  await connection()
   const user = await getCurrentUser()
   if (!user) {
     redirect("/login")
@@ -17,10 +15,7 @@ async function NewBlogContent() {
   return <NewBlogForm userId={user.id} users={[]} />
 }
 
-export default function NewBlog() {
-  return (
-    <Suspense fallback={<p>Checking access...</p>}>
-      <NewBlogContent />
-    </Suspense>
-  )
+export default async function NewBlog() {
+  await connection()
+  return NewBlogContent()
 }

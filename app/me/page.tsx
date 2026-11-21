@@ -4,7 +4,6 @@ import { getCurrentUser } from "../services/session"
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { connection } from "next/server"
-import { Suspense } from "react"
 import { db } from "../db"
 import { and, eq } from "drizzle-orm"
 import { readingList } from "../db/schema"
@@ -39,16 +38,12 @@ const markAsRead = async (formData: FormData) => {
   revalidatePath("/me")
 }
 
-export default function Me() {
-  return (
-    <Suspense fallback={<p>Loading profile...</p>}>
-      <MeContent />
-    </Suspense>
-  )
+export default async function Me() {
+  await connection()
+  return MeContent()
 }
 
 async function MeContent() {
-  await connection()
   const user = await getCurrentUser()
 
   if (!user) {
