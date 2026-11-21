@@ -1,0 +1,194 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Generate user token migration",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"exec",
+				"drizzle-kit",
+				"generate",
+				"--",
+				"--name",
+				"add_user_token"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Apply user token migration",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"exec",
+				"drizzle-kit",
+				"migrate"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Lint token page changes",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"lint"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Typecheck token changes",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"exec",
+				"tsc",
+				"--",
+				"--noEmit"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify migration status",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"exec",
+				"drizzle-kit",
+				"migrate"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run blog e2e tests",
+			"type": "shell",
+			"command": "npm run test:e2e",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Run auth tests",
+			"type": "shell",
+			"command": "npx playwright test tests/blog-app.spec.ts -g \"Authentication\"",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Run blog tests",
+			"type": "shell",
+			"command": "npx playwright test tests/blog-app.spec.ts -g \"Blogs\"",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Verify reading list tests",
+			"type": "shell",
+			"command": "npx playwright test tests/blog-app.spec.ts -g \"reading list with unread blog|can mark blog as read|multiple blogs in reading list|blogs can be filtered\"",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Verify reading tests",
+			"type": "shell",
+			"command": "npx playwright test tests/blog-app.spec.ts -g 'reading list'",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Run one reading-list test",
+			"type": "shell",
+			"command": "npx playwright test tests/blog-app.spec.ts -g 'shows reading list with unread blog'",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Run full Playwright suite",
+			"type": "shell",
+			"command": "npm run test:e2e",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Verify reading-list behavior",
+			"type": "shell",
+			"command": "npx playwright test tests/blog-app.spec.ts -g 'reading list with unread blog|can mark blog as read|multiple blogs in reading list'",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Build app",
+			"type": "shell",
+			"command": "npm run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify reading-list flow",
+			"type": "shell",
+			"command": "npx playwright test tests/blog-app.spec.ts -g 'shows reading list with unread blog'",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Debug reading action",
+			"type": "shell",
+			"command": "npx playwright test tests/blog-app.spec.ts -g 'shows reading list with unread blog'",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Diagnose user insert",
+			"type": "shell",
+			"command": "npx playwright test tests/blog-app.spec.ts -g 'shows reading list with unread blog'",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Verify reading-list tests",
+			"type": "shell",
+			"command": "npx playwright test tests/blog-app.spec.ts -g 'reading list'",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		},
+		{
+			"label": "Verify mark-as-read test",
+			"type": "shell",
+			"command": "npx playwright test tests/blog-app.spec.ts -g 'can mark blog as read'",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "test"
+		}
+	]
+}

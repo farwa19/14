@@ -3,8 +3,70 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  .markdown {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  width: 100%;
+}
+}
+.markdown h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 1.5rem 0 1rem;
+   margin-bottom: 24px;
 }
 
+.markdown h2 {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin: 2rem 0 0.75rem;
+   margin-bottom: 16px;
+}
+
+.markdown h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.markdown p {
+  margin: 1rem 0;
+  line-height: 1.7;
+   margin-bottom: 20px;
+}
+
+.markdown a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.markdown a:hover {
+  color: #2563eb;
+}
+
+.markdown ul {
+  margin: 1rem 0;
+  padding-left: 2rem;
+  line-height: 1.7;
+  list-style-type: disc;
+}
+
+.markdown ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+  line-height: 1.7;
+  list-style-type: decimal;
+}
+
+.markdown li {
+  margin: 0.5rem 0;
+}
+
+.markdown hr {
+  margin: 2rem 0;
+  opacity: 0.2;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -16,6 +78,12 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    .markdown {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  width: 100%;
+}
   }
 }
 

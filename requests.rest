@@ -1,0 +1,13 @@
+### Get current user information using API token
+GET http://localhost:3000/api/me
+Authorization: Bearer 88b4d6b4-726d-492f-9cbc-817f4f6b2124
+
+### Get current user information using API token
+DELETE http://localhost:3000/api/testing/reset
+### Get
+POST http://localhost:3000/api/testing/users
+{
+  "username": "testuser",
+  "name": "Test User",
+  "password": "testpass123"
+}
