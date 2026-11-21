@@ -3,6 +3,7 @@ import { generateApiToken } from "../actions/users"
 import { getCurrentUser } from "../services/session"
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
+import { connection } from "next/server"
 import { Suspense } from "react"
 import { db } from "../db"
 import { and, eq } from "drizzle-orm"
@@ -45,6 +46,7 @@ export default function Me() {
 }
 
 async function MeContent() {
+  await connection()
   const user = await getCurrentUser()
 
   if (!user) {
