@@ -25,11 +25,21 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Set up environment file
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
         run: |
-          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env.test
-          echo "NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}" >> .env.test
-          echo "NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}" >> .env.test
-          echo "NODE_ENV=test" >> .env.test
+          if [ -z "$DATABASE_URL" ]; then
+            echo "::error::The GitHub Actions secret DATABASE_URL is required."
+            exit 1
+          fi
+          if [ -z "$NEXTAUTH_SECRET" ] || [ -z "$NEXTAUTH_URL" ]; then
+            echo "::error::The GitHub Actions secrets NEXTAUTH_SECRET and NEXTAUTH_URL are required."
+            exit 1
+          fi
+          printf 'DATABASE_URL=%s\nNEXTAUTH_SECRET=%s\nNEXTAUTH_URL=%s\nNODE_ENV=test\n' \
+            "$DATABASE_URL" "$NEXTAUTH_SECRET" "$NEXTAUTH_URL" > .env.test
 
       - name: Verify environment setup
         run: |
