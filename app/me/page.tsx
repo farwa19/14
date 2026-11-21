@@ -9,6 +9,8 @@ import { db } from "../db"
 import { and, eq } from "drizzle-orm"
 import { readingList } from "../db/schema"
 
+export const instant = false
+
 const markAsRead = async (formData: FormData) => {
   "use server"
 

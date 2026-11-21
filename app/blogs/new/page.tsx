@@ -5,6 +5,8 @@ import { Suspense } from "react"
 import { getCurrentUser } from "../../services/session"
 import NewBlogForm from "./NewBlogForm"
 
+export const instant = false
+
 async function NewBlogContent() {
   await connection()
   const user = await getCurrentUser()

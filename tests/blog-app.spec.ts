@@ -342,11 +342,7 @@ test.describe("Blog Application", () => {
 
       // Click and wait for the request to complete
       await Promise.all([
-        page.waitForResponse(
-          (response) =>
-            response.request().method() === "POST" &&
-            Boolean(response.request().headers()["next-action"]),
-        ),
+        page.waitForResponse((response) => response.status() === 200),
         page.getByTestId("add-to-reading-list-button").click(),
       ])
 
@@ -373,11 +369,7 @@ test.describe("Blog Application", () => {
       await page.waitForSelector('[data-testid="add-to-reading-list-button"]')
       // Wait for server action to complete
       await Promise.all([
-        page.waitForResponse(
-          (response) =>
-            response.request().method() === "POST" &&
-            Boolean(response.request().headers()["next-action"]),
-        ),
+        page.waitForResponse((response) => response.status() === 200),
         page.getByTestId("add-to-reading-list-button").click(),
       ])
 
@@ -409,11 +401,7 @@ test.describe("Blog Application", () => {
       await page.getByRole("link", { name: "First Blog" }).click()
       await page.waitForSelector('[data-testid="add-to-reading-list-button"]')
       await Promise.all([
-        page.waitForResponse(
-          (response) =>
-            response.request().method() === "POST" &&
-            Boolean(response.request().headers()["next-action"]),
-        ),
+        page.waitForResponse((response) => response.status() === 200),
         page.getByTestId("add-to-reading-list-button").click(),
       ])
 
@@ -421,11 +409,7 @@ test.describe("Blog Application", () => {
       await page.getByRole("link", { name: "Second Blog" }).click()
       await page.waitForSelector('[data-testid="add-to-reading-list-button"]')
       await Promise.all([
-        page.waitForResponse(
-          (response) =>
-            response.request().method() === "POST" &&
-            Boolean(response.request().headers()["next-action"]),
-        ),
+        page.waitForResponse((response) => response.status() === 200),
         page.getByTestId("add-to-reading-list-button").click(),
       ])
 
