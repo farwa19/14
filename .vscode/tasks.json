@@ -189,6 +189,15 @@
 			"isBackground": false,
 			"problemMatcher": [],
 			"group": "test"
+		},
+		{
+			"label": "Check Drizzle config load",
+			"type": "shell",
+			"command": "npx drizzle-kit check --config=app/drizzle.config.ts",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
 		}
 	]
 }

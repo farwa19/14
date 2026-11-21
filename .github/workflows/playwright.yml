@@ -48,7 +48,9 @@ jobs:
           fi
 
       - name: Run database migrations
-        run: npx drizzle-kit push
+        run: npx drizzle-kit push --config=app/drizzle.config.ts
+        env:
+          NODE_ENV: test
 
       - name: Run Playwright tests
         run: npx playwright test
